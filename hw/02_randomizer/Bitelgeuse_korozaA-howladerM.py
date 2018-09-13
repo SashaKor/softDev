@@ -1,7 +1,7 @@
-#Aleksandra Koroza, 
-#SoftDev1 8
+#Team Bitelguese (Aleksandra Koroza and Mohtasim Howlader)
+#SoftDev1 pd8
 #K #02: NO-body expects the Spanish Inquisition!
-#2018-09-07
+#2018-09-12
 
 #dictionary w/ list
 #Your SOLO TASK: Use your Python knowledge and resourceful trickery to write a program that will print the name of a randomly-selected student from team (w, m, or x).
@@ -14,15 +14,22 @@ KREWES = {
 'x': ['Derek', 'Britni', 'Joan', 'Vincent', 'Jared', 'Ivan', 'Thomas', 'Maggie', 'Damian', 'Tina', 'Fabiha', 'John', 'Susan ', 'Kaitlin', 'Michelle', 'Clara', 'Rachel', 'Amit', 'Jerry', 'Raymond', 'Zane', 'Soojin', 'Maryann', 'Adil', 'Josh', 'Imad']
 }
 
+
 def randPerson(letter):
     valList= KREWES[letter]  #first access the list of values
+    
+    #alternative way of dealing with duplicates (by making sure they don't exist in the first place)
+    #valSet = set(valList) #convert list to set to eliminate duplicates
+    #valList = list(valSet) #convert set back to list
+    
     loc= random.randint(0,len(valList)-1)  #generate a random location
-    return valList[loc]  #accessing name using loc as index
+    print "Your selected person is "+ valList[loc]+ ", their index in the list being: "+ str(loc) +"."  #accessing name using loc as index, done to address above duplicate issue w/o deleting person.
 
-#using different letters to test
-print(randPerson('w'))
-print(randPerson('m'))
-print(randPerson('x'))
+
+randPerson('w')
+randPerson('m')
+randPerson('x')
+
 
 
 
