@@ -1,3 +1,8 @@
+#Aleksandra Koroza
+#SoftDev pd8
+#08_lemme_flask_u_sumpn
+#2018-09-19
+
 from flask import Flask
 app = Flask(__name__) #instantiates the Flask class using a constructor
 
