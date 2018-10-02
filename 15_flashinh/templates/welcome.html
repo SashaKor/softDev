@@ -1,27 +1,25 @@
-<html>
+{% extends "base.html" %}
+{% block title %}
+Welcome!
+{% endblock %}
 
-	<body>
+{% block content %}
+<center>
+  <h1>Welcome Page</h1>
+  <p> {{ username }} Welcome! </p>
+  <p> You have been logged in! </p>
+</center>
 
-		<center>
+<center>
+  <br>	<br>
 
-		<br>
-		<br>
+  <form action="/logout" name="main" method="POST">
+    <button name="enter" type="submit">
+      Logout
+    </button>
 
-		Welcome {{ username }}!!
+  </form>
 
-		<br>
-		<br>
+</center>
 
-		<form action="/login" name="main" method="POST">
-
-			<button name="enter" type="submit">
-			Logout
-			</button>
-
-		</form>
-
-		</center>
-
-	</body>
-
-</html>
+{% endblock %}

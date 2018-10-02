@@ -13,13 +13,9 @@ app.secret_key = os.urandom(32);
 usnm= "bni"
 psswd= "1234"
 
-#@app.before_request
-#def make_session_permanent():
-#    session.permanent = True
-
 @app.route("/", methods=["GET","POST"])
 def display():
-    if usnm in list(session.keys()):
+    if 'username' in session:
         return render_template("welcome.html",username=usnm)
     return render_template("login.html")
 
@@ -30,18 +26,20 @@ def login():
     pBool= "pass" in list(request.form.keys()) and request.form["pass"]== psswd
 
     if uBool and pBool:
+        session['username']=usnm
         return render_template("welcome.html",username=usnm)
 
     elif not uBool or not pBool:
-        flash("Oops something went wrong <br> Username correct?:"+str(uBool)+"<br> Password correct?:"+str(pBool))
+        flash("Oops something went wrong <br> Username correct?: "+str(uBool))
+        flash("<br> Password correct?: "+str(pBool))
         return render_template("login.html")
     else:
         return render_template("login.html")
 
 @app.route("/logout", methods=["GET","POST"])
 def logout():
-    session.pop[usnm]
-    return render_template("login.html")
+    session.pop('username', None)
+    return redirect(url_for('display'))
 
 if __name__ == "__main__":
     app.debug = True
