@@ -1,6 +1,6 @@
 #Mohtasim Howlader, Aleksandra Koroza: Bitelgeuse
-#SoftDev1 pd0
-#SQLITE3 BASICS
+#SoftDev1 pd8
+#16: No Trouble  
 #2018-10-04
 
 import sqlite3   #enable control of an sqlite database
