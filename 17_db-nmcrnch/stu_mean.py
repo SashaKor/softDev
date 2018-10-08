@@ -27,11 +27,27 @@ def createTable(filename,tblname,par1,par2,par3):
                insrtcommand = insertHdr + "('{0}','{1}','{2}')".format(row[par1],row[par2],row[par3])
                c.execute(insrtcommand)
                
+# Look up each student's grades, return a corresponding dict            
+def gradeLookup():
+     cmd="select name, peeps.id, mark from peeps, courses where peeps.id = courses.id"
+     result= c.execute(cmd).fetchall() # now a list of tuples
+     #print(result)
+     dic={}
+     for tup in result:
+          if tup[0] in dic:
+               dic[tup[0]]= dic[tup[0]].append(tup[2])
+               print(dic[tup[0]])
+          else:
+               lst=[]
+               dic[tup[0]]=lst.append(tup[1])
+               
+    # print(dic)
+     
 #create tables for peeps.csv
 createTable('peeps.csv',"peeps","name","age","id")
 #create table for courses.csv
 createTable('courses.csv',"courses","code","mark","id")
-
+gradeLookup()
 
 
 
