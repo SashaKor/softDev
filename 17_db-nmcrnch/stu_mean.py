@@ -27,28 +27,31 @@ def createTable(filename,tblname,par1,par2,par3):
                insrtcommand = insertHdr + "('{0}','{1}','{2}')".format(row[par1],row[par2],row[par3])
                c.execute(insrtcommand)
                
-# Look up each student's grades, return a corresponding dict            
+# Looks up each student's grades, displays name, id and average           
 def gradeLookup():
-     cmd="select name, peeps.id, mark from peeps, courses where peeps.id = courses.id"
+     cmd="select name, peeps.id, avg(mark) from peeps, courses where peeps.id=courses.id group by name"
      result= c.execute(cmd).fetchall() # now a list of tuples
-     #print(result)
-     dic={}
      for tup in result:
-          if tup[0] in dic:
-               dic[tup[0]]= dic[tup[0]].append(tup[2])
-               print(dic[tup[0]])
-          else:
-               lst=[]
-               dic[tup[0]]=lst.append(tup[1])
-               
-    # print(dic)
+          print("Name: {0}, ID: {1}, Average: {2}".format(tup[0],tup[1],tup[2]))
+          
+#create table of ids and associated averages          
+def idTable(tblname):
+     cmd="select peeps.id, avg(mark) from peeps, courses where peeps.id=courses.id group by name"
+     result= c.execute(cmd).fetchall() # now a list of tuples
+     tblcommand="CREATE TABLE {0}({1} INTEGER, {2} INTEGER)".format(tblname,"id","avg")
+     c.execute(tblcommand) #table now exists to store id's and averages
      
+     insertHdr = "INSERT INTO {0} ({1},{2}) VALUES ".format(tblname,"id","avg")
+     for tup in result:
+          insrtcommand = insertHdr + "('{0}','{1}')".format(tup[0],tup[1])
+          c.execute(insrtcommand)
+          
 #create tables for peeps.csv
 createTable('peeps.csv',"peeps","name","age","id")
 #create table for courses.csv
 createTable('courses.csv',"courses","code","mark","id")
 gradeLookup()
-
+idTable("peeps_avg")
 
 
 #==========================================================
