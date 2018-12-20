@@ -1,8 +1,8 @@
-// Team ASCIIResort
-// Hasif Ahmed and Alesandra Koroza
+// Team extends Everything
+// Hasif Ahmed and Aleksandra
 // SoftDev1 pd8
-// K #29: Sequential Progression II: Electric Boogaloo...
-// 2018-12-19
+// K29 -- Sequential Progression II: Electric Boogaloo
+// 2018-12-20
 
 
 var fibonacci = function(n){
@@ -12,20 +12,28 @@ var fibonacci = function(n){
 	return fibonacci(n-1) + fibonacci(n-2);
     }
 }
-
 var gcd = function(a,b){
-  if (b > a){
-    var c = a;
-    a = b;
-    b = c;
-  }
-  var rem = a % b;
-  if(rem == 0){
-    return b;
-  }
-  return gcd(b,rem);
-}
+    if(a == b){
+	return a;
+    }
 
+    var g = 0;
+    if(a < b){
+	smaller = a;
+    } else {
+	smaller = b;
+    }
+
+    div = smaller;
+
+    while(div >= 1){
+	if( a % div == 0 && b % div == 0){
+	    g = div;
+	    return div;
+	}
+	div--;
+    }
+}
 
 var students = ['Aaron', 'Emma', 'Bo'];
 
@@ -34,16 +42,32 @@ var randomStudent = function(){
     return students[randint];
 }
 
+var displayfib = () => {
+    var results = fibonacci(2);
+    console.log(results);
+    document.getElementById('fib_res').innerHTML = results;
+};
+
+var displayrs = () => {
+    var results = randomStudent();
+    console.log(results);
+    document.getElementById('randstu_res').innerHTML = results;
+};
+
+var displaygcd = () => {
+    var results = gcd(100,90);
+    console.log(results);
+    document.getElementById('gcd_res').innerHTML = results;
+};
 
 var fibbut = document.getElementById("fib");
-fibbut.addEventListener("click", function(){
-    console.log(fibonacci(4))
-});
-var gcdbut = document.getElementById("gcd");
-gcdbut.addEventListener('click', function(){
-  console.log(gcd(100,10));
-});
-var studentbut = document.getElementById("student");
-studentbut.addEventListener('click', function(){
-  console.log(randomStudent());
-});
+//console.log(fibbut);
+fibbut.addEventListener('click', displayfib);
+
+var stud = document.getElementById("randstu");
+//console.log(stud);
+stud.addEventListener('click', displayrs);
+
+var great = document.getElementById("gcd");
+//console.log(great);
+great.addEventListener('click', displaygcd);
