@@ -37,7 +37,7 @@ var randomStudent = function(){
 
 var fibbut = document.getElementById("fib");
 fibbut.addEventListener("click", function(){
-    console.log(fibonacci(2))
+    console.log(fibonacci(4))
 });
 var gcdbut = document.getElementById("gcd");
 gcdbut.addEventListener('click', function(){
