@@ -16,7 +16,7 @@ When an item on the list is clicked, remove it from the DOM.
 /*adding element to list upon button push*/
 var but0 = document.getElementById("b");
 var lst = document.getElementById("thelist");
-var children= lst.children
+var children= lst.children;
 //var lst = document.getElementsByTagName("li");
 //console.log(fibbut);
 but0.addEventListener('click', function(x){
@@ -26,7 +26,21 @@ but0.addEventListener('click', function(x){
   var text = document.createTextNode("NEWNODE!!!");
   elem.appendChild(text);
   document.getElementById("thelist").appendChild(elem);
+  var lst = document.getElementById("thelist");
+  var children= lst.children
+  for (var i=0; i<children.length; i++){
+    children[i].addEventListener('mouseover', function(e){
+      console.log(e);
+      document.getElementById("h").innerHTML = this.innerHTML;
+    });
+    children[i].addEventListener('mouseout', function(){
+      document.getElementById("h").innerHTML = "Hello World";
+    });
+    children[i].addEventListener('click', function(){this.remove();}
+  );
+  };
   }
+
 );
 
 for (var i=0; i<children.length; i++){
