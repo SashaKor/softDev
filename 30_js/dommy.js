@@ -15,52 +15,33 @@ When an item on the list is clicked, remove it from the DOM.
 
 /*adding element to list upon button push*/
 var but0 = document.getElementById("b");
+var lst = document.getElementById("thelist");
+var children= lst.children
+//var lst = document.getElementsByTagName("li");
 //console.log(fibbut);
 but0.addEventListener('click', function(x){
   console.log(x);
   var elem = document.createElement("LI");
-  //used to append some text to a newly created list element
+  //used to append some text to a newly created li element
   var text = document.createTextNode("NEWNODE!!!");
   elem.appendChild(text);
   document.getElementById("thelist").appendChild(elem);
   }
 );
 
-var lst = document.getElementsByTagName("li");
-for (var i=0; i<lst.length; i++){
-  lst[i].setAttribute('val', i);
-  lst[i].addEventListener('mouseover', function(){document.getElementById("h").innerHTML = "Item " + this.getAttribute("val");});
-  lst[i].addEventListener('mouseout', function(){document.getElementById("h").innerHTML = "Hello World"});
-  lst[i].addEventListener('click', function(){this.remove()});
-}
+for (var i=0; i<children.length; i++){
+  children[i].addEventListener('mouseover', function(e){
+    console.log(e);
+    document.getElementById("h").innerHTML = this.innerHTML;
+  });
+  children[i].addEventListener('mouseout', function(){
+    document.getElementById("h").innerHTML = "Hello World";
+  });
+  children[i].addEventListener('click', function(){this.remove();}
+);
+};
 
-//var lst = document.getElementById("thelist");
-//children = lst.children
-//for (i in members) {
 
-
-//}
-
-/*
-lst.addEventListener('mouseover', function(e){
-  //console.log(e);
-  var lst= this.innerHTML;
-  //console.log(lst.children);
-  //document.getElementById("h").innerHTML = str;
-});
-
-lst.addEventListener('mouseout', function(e){
-  console.log(e);
-  //var str= lst.innerHTML;
-  document.getElementById("h").innerHTML = "Hello World";
-});
-
-/* when item clicked, remove from DOM
-lst.addEventListener('click', function(e){
-  console.log(e);
-
-});
-*/
 /*
 PHASE IV:
 Add a second list to the html page. Do not add elements to it.
@@ -81,7 +62,6 @@ var fib = function(n){
 };
 
 var but1 = document.getElementById("fb");
-//console.log(fibbut);
 but1.addEventListener('click', function(e){
   console.log(e);
   var elem = document.createElement("LI");
