@@ -69,8 +69,25 @@ When the second button is pressed,
 add a new item to your list, showing the next Fibonacci number.
 Beyond!: add more lists that generate other sequences…
 */
+var fibNum = 1;
+
+var fib = function(n){
+    if (n == 0)
+        return 0;
+    else if (n<3)
+        return 1;
+    else
+        return fib(n -1) + fib(n -2);
+};
+
 var but1 = document.getElementById("fb");
 //console.log(fibbut);
 but1.addEventListener('click', function(e){
-  console.log(e);}
+  console.log(e);
+  var elem = document.createElement("LI");
+  //used to append some text to a newly created list element
+  var text = document.createTextNode(fib(fibNum++));
+  elem.appendChild(text);
+  document.getElementById("fiblist").appendChild(elem);
+}
 );
